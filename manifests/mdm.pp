@@ -3,9 +3,12 @@ define mac_profiles_handler::mdm (
     $file_source,
     $ensure,
     $type,
+    $payload_identifier
 ) {
 
-  $payload_identifier = $name
+  if $payload_identifier == undef {
+      $payload_identifier = $name
+  }
 
   $enrolled = $facts['mdmenrollment']['mdm_enrolled']
 

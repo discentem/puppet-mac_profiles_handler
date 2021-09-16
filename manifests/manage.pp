@@ -1,5 +1,6 @@
 # manage mac profiles
 define mac_profiles_handler::manage(
+  $payload_identifier = undef,
   $file_source = '',
   $ensure = 'present',
   $type = 'mobileconfig',
@@ -19,9 +20,10 @@ define mac_profiles_handler::manage(
   case $processed_method {
     'mdm': {
       mac_profiles_handler::mdm {$name:
-        ensure      => $ensure,
-        file_source => $file_source,
-        type        => $type
+        ensure             => $ensure,
+        file_source        => $file_source,
+        type               => $type,
+        payload_identifier => $payload_identifier,
       }
     }
     default: {
